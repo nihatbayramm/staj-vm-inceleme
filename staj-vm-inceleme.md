@@ -88,6 +88,7 @@ dhclient enp0s3    # Yeni ip talep et
 ![image](https://github.com/user-attachments/assets/851e9123-5898-4cf7-94d6-4bdce31234fc)
 
 -Tekrar ping attığımız zaman internete bağlandığımızı görebiliriz :
+
 ![image](https://github.com/user-attachments/assets/84328b7c-a351-4489-ac25-89caf761ab29)
 
 
