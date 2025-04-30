@@ -20,7 +20,7 @@ rd.break
 
 5. `Ctrl + X` tuşlarına basarak sistemi bu modda başlatıyoruz.
 
-## 🛠️ Dracut Shell Üzerinden Root Erişimi
+## Dracut Shell Üzerinden Root Erişimi
 
 6. Sistem `switch_root:/#` gibi bir satırla açılacaktır.
 7. Root dosya sistemini yeniden bağlıyoruz:
