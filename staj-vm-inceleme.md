@@ -2,12 +2,16 @@
 
 Sanal makinede root şifresi bilinmiyor. İpucu olarak “erişim bilgilerini bilmediğiniz bir sunucuya nasıl erişirsiniz” denildiği için GRUB üzerinden `rd.break` komutunu kullanarak root şifresini sıfırlayabiliriz.
 
-## 🔐 Root Şifresini Sıfırlama Adımları (CentOS)
+## Root Şifresini Sıfırlamak için Aşağıdaki  Adımları Takip Edecez : 
 
-1. VM’i başlat.
-2. GRUB ekranı geldiğinde klavyeden `e` tuşuna bas.
-3. `linux16` veya `linux` ile başlayan satırı bul.
-4. Satırın sonuna şu komutu ekle:
+1. VM’i başlatıyoruz.
+![image](https://github.com/user-attachments/assets/fffe6e73-6765-4361-a78c-362c09fb5073)
+
+3. GRUB ekranı geldiğinde klavyeden `e` tuşuna basıyoruz.
+5. `linux16` veya `linux` ile başlayan satırını buluyoruz.
+![image](https://github.com/user-attachments/assets/f48ddeb8-b427-4c59-8c46-11cf0a5fde17)
+
+7. Satırın sonuna şu komutu ekliyoruz:
 
 ``` 
 rd.break
