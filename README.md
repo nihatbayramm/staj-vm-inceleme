@@ -1,46 +1,37 @@
-# Sanal Makine İncelemesi ve Güvenlik Analizi
+# Sanal Makine İncelemesi ve Güvenlik Analizi (CentOS)
 
-Bu çalışmada verilen `.ova` uzantılı sanal makine imajı incelenmiş, sistemde tespit edilen sorunlar ve eksiklikler adım adım analiz edilmiştir. Aynı zamanda web servisi veren bir sunucuda bulunmaması gereken yapılandırmalar belirlenmiş ve gerekli düzeltmeler yapılmıştır.
+Bu projede verilen `.ova` uzantılı CentOS sanal makinesi incelenmiş; sistem yapılandırmaları, kullanıcı yetkileri ve servis durumları detaylı olarak analiz edilmiştir. Amaç, sunucu ortamında bulunmaması gereken yapılandırmaları tespit edip düzeltmektir.
 
 ## 🧩 Başlangıç
 
-Sanal makine VirtualBox ortamına import edilerek başlatılmıştır.
+Sanal makine VirtualBox ortamına import edilip başlatıldıktan sonra kullanıcı girişleri başarıyla gerçekleştirildi. `root` dizininde yer alan `README` dosyası incelendi.
 
-### İlk Adım: Erişim Sağlama
-- Sanal makine başlatıldıktan sonra kullanıcı adı ve parola ile giriş yapıldı.
-- root kullanıcısının ev dizininde bulunan `README` dosyası incelendi.
-- SSH, sudo ve root yetkileri test edildi.
+## 🔍 İnceleme ve Düzeltme Adımları
 
-## 🔍 İnceleme Adımları
+### 1. Ağ ve Port Kontrolü
+- `ip a` ile ağ arayüzleri kontrol edildi.
+- `ss -tuln` ve `netstat -tuln` komutları ile sistemde dinlenen portlar listelendi.
+- Gereksiz açık portlar ve dışa açık servisler belirlendi.
 
-1. **Ağ Yapılandırması Kontrolü**
-   - `ip a` ve `netstat -tuln` komutları ile sistemin dinlediği portlar ve IP yapılandırması kontrol edildi.
-   - Gereksiz açık portlar tespit edildi.
+### 2. Kullanıcı ve Yetki Analizi
+- `/etc/passwd` ve `/etc/shadow` dosyaları incelenerek sistem kullanıcıları gözden geçirildi.
+- `sudo` yetkileri ve `wheel` grubuna ait kullanıcılar kontrol edildi.
+- Şüpheli kullanıcılar sistemden kaldırıldı.
 
-2. **Kullanıcı ve Yetki Analizi**
-   - `sudo`, `su`, `/etc/passwd` ve `/etc/shadow` dosyaları kontrol edildi.
-   - Şüpheli kullanıcılar ve zayıf parola ihtimalleri analiz edildi.
+### 3. Servis Yönetimi
+- `systemctl list-units --type=service` ile aktif servisler görüntülendi.
+- Gereksiz servisler `systemctl disable` ve `systemctl stop` komutlarıyla devre dışı bırakıldı.
+- Özellikle dışa açık web, FTP ya da SSH servislerinin yapılandırmaları denetlendi.
 
-3. **Servis ve Daemon Kontrolleri**
-   - `systemctl list-units --type=service` komutu ile çalışan servisler listelendi.
-   - Gereksiz servisler belirlendi ve devre dışı bırakıldı.
+### 4. Paket ve Güncelleme Yönetimi
+- Sistem güncellemeleri `yum update -y` komutu ile yapıldı.
+- Kullanılmayan veya riskli paketler `yum remove` ile sistemden temizlendi.
 
-4. **Güncelleme ve Paket Yönetimi**
-   - `apt update && apt upgrade` komutları ile sistemin güncel olup olmadığı kontrol edildi.
-   - Gereksiz veya potansiyel risk taşıyan paketler temizlendi.
-
-5. **Güvenlik Duvarı ve Ağ Güvenliği**
-   - `ufw status` ve `iptables -L` komutları ile güvenlik duvarı yapılandırması kontrol edildi.
-   - Gerekli kurallar yazılarak dışa açık servisler sınırlandırıldı.
-
-6. **Web Servisi Analizi**
-   - `apache2` veya `nginx` gibi servislerin kurulu olup olmadığı ve yapılandırmaları incelendi.
-   - Gerekliyse varsayılan sayfalar ve açıklayıcı bilgiler kaldırıldı.
-
-## ✅ Sonuç ve Düzeltmeler
-
-- Sistem üzerindeki temel güvenlik açıkları tespit edilip kapatıldı.
-- Giriş bilgilerinin güvenliği artırıldı.
-- Gereksiz servisler ve kullanıcılar sistemden kaldırıldı.
-- Sistem daha güvenli, sade ve kontrol altında bir hale getirildi.
-
+### 5. Güvenlik Duvarı (firewalld)
+- `firewall-cmd --list-all` komutu ile mevcut kurallar incelendi.
+- Gereksiz açık portlar kapatıldı, sadece gerekli servisler açık bırakıldı.
+- firewalld aktif hale getirildi ve yeniden yüklendi:
+  ```bash
+  systemctl enable firewalld
+  systemctl start firewalld
+  firewall-cmd --reload
