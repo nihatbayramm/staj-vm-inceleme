@@ -59,7 +59,21 @@ touch /.autorelabel
 
 # İnternet erişim sorunu
 
-**Not: İnternete bağlanmak için geçiçi olarak ip ataması yapılabilir fakat sunucu her yeniden açılmada internet tekrar gider ve komutları tekrar girmek gerekiyor ayarları kalıcı yapmak için öncelikle sunucunun depolama alanını genişletmeliyiz ya da sunucuda gereksiz belgelri silmleyiz öncelikle il adımda geçiçi yani ram'de saklanan ayarlamaları gösterecem sonrasında disk alanını genişletip kalıcı ayarlamaları yapacam**
+### Geçici ve Kalıcı IP Ayarları
+
+İnternete bağlanmak için geçici olarak IP ataması yapılabilir. Ancak, sunucu her yeniden başlatıldığında internet bağlantısı kaybolur ve komutların tekrar girilmesi gerekir. Ayarların kalıcı olabilmesi için şu adımları izlemeliyiz:
+
+1. **Geçici Ayarlar**  
+   İlk adımda, geçici yani RAM'de saklanan ayarları yapacağım. Bu ayarlarla sunucuyu geçici olarak internete bağlayacağız.
+
+2. **Sunucu Depolama Alanı Genişletme**  
+   Ayarların kalıcı olabilmesi için, sunucunun depolama alanını genişletmemiz gerekiyor. Eğer depolama alanı yeterli değilse, gereksiz dosyaları silerek alan yaratabiliriz.
+
+3. **Kalıcı Ayarların Yapılması**  
+   Depolama alanını genişlettikten sonra, kalıcı ayarları yaparak IP atamalarını ve diğer ağ ayarlarını sunucunun diskine kaydedeceğiz.
+
+Bu adımları takip ederek, sunucunun her yeniden başlatılmasında internet bağlantısının kaybolmasını engelleyebiliriz.
+
 
 **ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir :** 
 
