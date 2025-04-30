@@ -55,3 +55,41 @@ touch /.autorelabel
 ![image](https://github.com/user-attachments/assets/46d11ac0-f2af-4bfa-aa2a-d6e10e0b4d01)
 
 
+**Sunucu Sorunları** 
+# İnternet erişim sorunu ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir : 
+![image](https://github.com/user-attachments/assets/a89f2bdf-1f4d-4387-92e6-2756ca6546fb)
+
+1. DNS sunucusu kontrolü
+```
+cat /etc/resolv.conf
+```
+- nameserver 8.8.8.7 yanlış bir DNS adresi — Google'ın doğru DNS adresi 8.8.8.8 veya 8.8.4.4 olmalı. 8.8.8.7 kullanılmaz ve internet erişimini bozuyordur.
+- Dns adresini değiştirirken resolv.conf dosyası değiştirelemez olarak ayarlanmış bunu değiştirmek için resolv.conf Dosyasından Immutable Özelliğini Kaldıracaz.
+![image](https://github.com/user-attachments/assets/079bfba7-0d4e-4623-a7a4-dc43987d165c)
+
+-İmmutable özelliğini kaldırmak için aşağı komutu girecez :
+```
+chattr -i /etc/resolv.conf
+
+```
+![image](https://github.com/user-attachments/assets/69996b5f-2cac-4e62-8926-0c6fd6e403ae)
+
+-Dns sunucusunu nano ile değiştirip  tekrar konrtol ediyoruz :
+![image](https://github.com/user-attachments/assets/84e5b546-b073-4f2d-b6cb-aac15e176a4b)
+
+-Ping attığımızda hala sorun olduğu gözüküyor :
+![image](https://github.com/user-attachments/assets/072f0c03-1d92-4269-b61e-0e5224c02554)
+
+-Sorunu çözmek için mevcut ip ardesini serbest bırakıp yeni bir ip talep edecez :
+```
+dhclient -r enp0s3  # Mevcut IP'yi serbest bırak
+dhclient enp0s3    # Yeni ip talep et
+```
+![image](https://github.com/user-attachments/assets/851e9123-5898-4cf7-94d6-4bdce31234fc)
+
+-Tekrar ping attığımız zaman internete bağlandığımızı görebiliriz :
+![image](https://github.com/user-attachments/assets/84328b7c-a351-4489-ac25-89caf761ab29)
+
+
+
+
