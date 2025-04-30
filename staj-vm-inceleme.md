@@ -4,26 +4,26 @@ Sanal makinede root şifresi bilinmiyor. İpucu olarak “erişim bilgilerini bi
 
 ## Root Şifresini Sıfırlamak için Aşağıdaki  Adımları Takip Edecez : 
 
-1. VM’i başlatıyoruz.
+**1. VM’i başlatıyoruz.**
 ![image](https://github.com/user-attachments/assets/fffe6e73-6765-4361-a78c-362c09fb5073)
 
-3. GRUB ekranı geldiğinde klavyeden `e` tuşuna basıyoruz.
-5. `linux16` veya `linux` ile başlayan satırını buluyoruz.
+**3. GRUB ekranı geldiğinde klavyeden `e` tuşuna basıyoruz.**
+**5. `linux16` veya `linux` ile başlayan satırını buluyoruz.**
 ![image](https://github.com/user-attachments/assets/f48ddeb8-b427-4c59-8c46-11cf0a5fde17)
 
-7. Satırın sonuna şu komutu ekliyoruz:
+**7. Satırın sonuna şu komutu ekliyoruz:**
 
 ``` 
 rd.break
 ```
 ![image](https://github.com/user-attachments/assets/13e54ba3-f5bb-4378-bc59-a5bd08f49a8e)
 
-5. `Ctrl + X` tuşlarına basarak sistemi bu modda başlatıyoruz.
+**5. `Ctrl + X` tuşlarına basarak sistemi bu modda başlatıyoruz.**
 
 ## Dracut Shell Üzerinden Root Erişimi
 
-6. Sistem `switch_root:/#` gibi bir satırla açılacaktır.
-7. Root dosya sistemini yeniden bağlıyoruz:
+**6. Sistem `switch_root:/#` gibi bir satırla açılacaktır.**
+**7. Root dosya sistemini yeniden bağlıyoruz:**
 ```
 mount -o remount,rw /sysroot
 chroot /sysroot
@@ -32,14 +32,14 @@ chroot /sysroot
 
 ![image](https://github.com/user-attachments/assets/dd85fa16-59d5-4c03-a820-75bce2d6dfc6)
 
-8.Root şifresini sıfırlıyoruz:
+**8.Root şifresini sıfırlıyoruz:**
 
 ```
 passwd
 ```
 ![image](https://github.com/user-attachments/assets/6bfb995b-b484-45fa-aacd-0ccf83a0a8df)
 
-9.SELinux tekrar etiketleme yapabilsin diye aşağıdaki komutu giriyoruz :
+**9.SELinux tekrar etiketleme yapabilsin diye aşağıdaki komutu giriyoruz :**
 
 ```
 touch /.autorelabel
@@ -48,7 +48,7 @@ touch /.autorelabel
 
 ![image](https://github.com/user-attachments/assets/d576c063-55e6-4031-9f39-3597eaa4f22a)
 
-10.exit yaparak giriş ekranına geliyoruz sonrasında kullanııcı adı olarak root yazıp belirlediğimiz şifreyi girip sisteme giriş yapıyoruz:
+**10.exit yaparak giriş ekranına geliyoruz sonrasında kullanııcı adı olarak root yazıp belirlediğimiz şifreyi girip sisteme giriş yapıyoruz:**
 
 ![image](https://github.com/user-attachments/assets/bd194adb-ec03-4df0-9b51-f1bbc40e7696)
 
@@ -59,7 +59,7 @@ touch /.autorelabel
 
 # İnternet erişim sorunu
 
-**Not:İnternete bağlanmak için geçiçi olarak ip ataması yapılabilir fakat sunucu her yeniden açılmada internet tekrar gider ve komutları tekrar girmek gerekiyor kayarları kalıcı yapmak için öncelikle sunucunun depolama alanını genişletmeliyiz ya da sunucuda gereksiz belgelri silmleyiz öncelikle il adımda geçiçi yani ram'de saklanan ayarlamaları gösterecem sonrasında disk alanını genişletip kalıcı ayarlamaları yapacam**
+**Not: İnternete bağlanmak için geçiçi olarak ip ataması yapılabilir fakat sunucu her yeniden açılmada internet tekrar gider ve komutları tekrar girmek gerekiyor ayarları kalıcı yapmak için öncelikle sunucunun depolama alanını genişletmeliyiz ya da sunucuda gereksiz belgelri silmleyiz öncelikle il adımda geçiçi yani ram'de saklanan ayarlamaları gösterecem sonrasında disk alanını genişletip kalıcı ayarlamaları yapacam**
 
 **ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir :** 
 
