@@ -173,5 +173,5 @@ df -h
 
 ![image](https://github.com/user-attachments/assets/7247c26d-a958-4520-8e0e-e8e972f55111)
 
-**Artık / bölümü genişleşti.**
+**Artık / bölümü genişledi.**
 
