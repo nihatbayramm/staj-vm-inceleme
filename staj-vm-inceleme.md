@@ -57,7 +57,8 @@ touch /.autorelabel
 
 **Sunucu Sorunları** 
 
-# İnternet erişim sorunu ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir : 
+# İnternet erişim sorunu
+**ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir :** 
 
 ![image](https://github.com/user-attachments/assets/a89f2bdf-1f4d-4387-92e6-2756ca6546fb)
 
