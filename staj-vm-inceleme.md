@@ -58,6 +58,9 @@ touch /.autorelabel
 # Sunucu Sorunları 
 
 # İnternet erişim sorunu
+
+**Not:İnternete bağlanmak için geçiçi olarak ip ataması yapılabilir fakat sunucu her yeniden açılmada internet tekrar gider ve komutları tekrar girmek gerekiyor kayarları kalıcı yapmak için öncelikle sunucunun depolama alanını genişletmeliyiz ya da sunucuda gereksiz belgelri silmleyiz öncelikle il adımda geçiçi yani ram'de saklanan ayarlamaları gösterecem sonrasında disk alanını genişletip kalıcı ayarlamaları yapacam**
+
 **ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir :** 
 
 ![image](https://github.com/user-attachments/assets/a89f2bdf-1f4d-4387-92e6-2756ca6546fb)
