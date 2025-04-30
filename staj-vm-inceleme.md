@@ -119,5 +119,59 @@ dhclient enp0s3    # Yeni ip talep et
 ![image](https://github.com/user-attachments/assets/84328b7c-a351-4489-ac25-89caf761ab29)
 
 
+### Sunucu Depolama Alanı Genişletme :
 
+**VirtualBox Üzerinde Disk Alanını Genişletme**
+
+1) VirtualBox → Settings → Storage → .vdi dosyasına tıkla
+
+2) Sağ alt köşede “Size” kısmından kaydırarak artırabiliriz
+
+![image](https://github.com/user-attachments/assets/86a41d6e-5283-4a63-b467-06f34fd43332)
+
+![image](https://github.com/user-attachments/assets/fa7a2a61-c97c-4c88-adee-78a1ef1621a3)
+
+![image](https://github.com/user-attachments/assets/2a376086-0a32-4588-91ee-26542d144309)
+
+![image](https://github.com/user-attachments/assets/1325b805-44a4-4247-8230-e7df46b1c847)
+
+# CentOS Root Alanını Genişletme (LVM Kullanarak)
+Sanal disk büyütüldükten sonra CentOS’ta aşağıdaki işlemleri yaparak root alanını genişletebiliriz:
+
+**1. Yeni Alanı Tanımlama ve VG’ye Eklemek için aşağıdaki komutları kullanacaz :**
+
+```
+lsblk          # Yeni diski/bölümü tespit etmek için (örneğin /dev/sdb)
+pvcreate /dev/sdb
+vgextend centos /dev/sdb
+
+```
+![image](https://github.com/user-attachments/assets/5fa26d28-4550-44af-9354-cd4048023796)
+
+
+**2. Root Logical Volume Genişletme**
+
+**Tüm boş alanı eklemek için aşağıdaki komutları kullanıyoruz :**
+
+```
+lvextend -l +100%FREE /dev/centos/root
+```
+![image](https://github.com/user-attachments/assets/40b8c10b-def8-4a3f-96ce-8c4e8b3cee03)
+
+**3. Dosya Sistemini Genişletme (XFS için) aşağıdaki kodu kullanmalıyız :**
+
+```
+xfs_growfs /dev/centos/root
+```
+
+![image](https://github.com/user-attachments/assets/de61505d-bcde-4a84-a510-389ef175c5bf)
+
+**4. Son Kontrolü yapmak içi aşağıdaki komutu yazığ kontrol edecez :**
+```
+df -h
+```
+
+![image](https://github.com/user-attachments/assets/7247c26d-a958-4520-8e0e-e8e972f55111)
+
+**Artık / bölümü genişleşti.**
 
