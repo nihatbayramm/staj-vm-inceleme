@@ -44,6 +44,3 @@ Sanal makine VirtualBox ortamına import edilerek başlatılmıştır.
 - Gereksiz servisler ve kullanıcılar sistemden kaldırıldı.
 - Sistem daha güvenli, sade ve kontrol altında bir hale getirildi.
 
-## 📎 Notlar
-
-- Tüm yapılan işlemler terminal çıktıları ve ekran görüntüleri ile desteklenerek ayrı dosyalarda belge halinde sunulacaktır.
