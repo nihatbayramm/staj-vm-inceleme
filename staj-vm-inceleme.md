@@ -75,6 +75,9 @@ touch /.autorelabel
 Bu adımları takip ederek, sunucunun her yeniden başlatılmasında internet bağlantısının kaybolmasını engelleyebiliriz.
 
 
+
+# Geçici Ayarlar
+
 **ip adresi var fakat ping atıldığı zaman internet erişiminin olmadığı görülüyor bunun için aşağıdaki adımlar izlenmelidir :** 
 
 ![image](https://github.com/user-attachments/assets/a89f2bdf-1f4d-4387-92e6-2756ca6546fb)
