@@ -12,5 +12,5 @@ Sanal makinede root şifresi bilinmiyor. İpucu olarak “erişim bilgilerini bi
 ``` 
 rd.break
 ```
-https://github.com/nihatbayramm/staj-vm-inceleme/blob/main/image/Screenshot%20from%202025-04-30%2013-13-23.png?raw=true
+![image](https://github.com/user-attachments/assets/13e54ba3-f5bb-4378-bc59-a5bd08f49a8e)
 
