@@ -1,3 +1,7 @@
+### CentOS 7 Sistem Düzeltme Raporu
+
+**SİSTEME ERİŞİM**
+
 # Root Erişimi Sağlamak (rd.break ile)
 
 Sanal makinede root şifresi bilinmiyor. İpucu olarak “erişim bilgilerini bilmediğiniz bir sunucuya nasıl erişirsiniz” denildiği için GRUB üzerinden `rd.break` komutunu kullanarak root şifresini sıfırlayabiliriz.
@@ -174,4 +178,35 @@ df -h
 ![image](https://github.com/user-attachments/assets/7247c26d-a958-4520-8e0e-e8e972f55111)
 
 **Artık / bölümü genişledi.**
+
+### HATALAR VE DUZELTMELER :
+
+**1)Ram'ı zorlayan stress paketi kapatıldı
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
