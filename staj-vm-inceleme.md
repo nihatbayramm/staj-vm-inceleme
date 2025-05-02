@@ -1,4 +1,4 @@
-### CentOS 7 Sistem Düzeltme Raporu
+# CentOS 7 Sistem Düzeltme Raporu
 
 **SİSTEME ERİŞİM**
 
