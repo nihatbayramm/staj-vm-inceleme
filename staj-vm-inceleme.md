@@ -8,9 +8,6 @@ Sanal makinede root şifresi bilinmiyordu. İpucu olarak “erişim bilgilerini 
 
 Root Şifresini Sıfırlamak için İzlenen Adımlar:
 
-
-Sanal makinede root şifresi bilinmiyor. İpucu olarak “erişim bilgilerini bilmediğiniz bir sunucuya nasıl erişirsiniz” denildiği için GRUB üzerinden `rd.break` komutunu kullanarak root şifresini sıfırlayabiliriz.
-
 ## Root Şifresini Sıfırlamak için Aşağıdaki  Adımları Takip Edecez : 
 
 **1. VM’i başlatıyoruz.**
