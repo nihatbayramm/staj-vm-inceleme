@@ -113,6 +113,10 @@ ping google.com
 
 ```
 
+![image](https://github.com/user-attachments/assets/6800ffd7-134d-4e91-9e80-30491aad61ea)
+
+![image](https://github.com/user-attachments/assets/a725f311-0b4f-44bb-8dd8-4b239e20bb01)
+
 
 
 
