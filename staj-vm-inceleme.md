@@ -315,5 +315,87 @@ rpm -ivh --force /mnt/iso/Packages/glibc-2.17-317.el7.x86_64.rpm /mnt/iso/Packag
 
 ![image](https://github.com/user-attachments/assets/5ba71327-c7f0-479c-b4a8-41d8bc75dc03)
 
+# 6. Apache Kurulum ve Test
+
+**Sorun:** Apache servisi çalışmıyor, web sayfası hedefi tamamlanmamıştı.
+
+### Çözüm Adımları:
+
+1)yum install -y httpd ile Apache kuruldu.
+
+2)systemctl start httpd ve systemctl enable httpd ile servis başlatıldı ve kalıcı hale getirildi.
+
+3)chown apache:apache /var/www/html/index.html ve chmod 644 /var/www/html/index.html ile izinler düzenlendi.
+
+4)firewall-cmd --permanent --add-service=http ve --add-service=https ile HTTP/HTTPS portları açıldı.
+
+5)firewall-cmd --reload ile firewall güncellendi.
+
+6)Kendi bilgisayardan http://192.168.227.72 ile bağlanıldı, mesaj doğrulandı.
+
+7)Sunucu yarım saat çalıştırıldı, reboot sonrası tekrar kontrol edildi, sayfa hala görünüyordu.
+
+**Kullanılan Komutlar :**
+
+```
+yum install -y httpd
+systemctl start httpd
+systemctl enable httpd
+chown apache:apache /var/www/html/index.html
+chmod 644 /var/www/html/index.html
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+firewall-cmd --reload
+systemctl restart httpd
+reboot
+
+```
+
+![image](https://github.com/user-attachments/assets/3af45529-4ef3-493f-a974-dbf9fde0a685)
+
+![image](https://github.com/user-attachments/assets/4526c91d-42ef-40ae-bb7a-2b4fdc06ac0b)
+
+
+# 8. Güvenlik ve Sistem Kontrolü
+
+**Adımlar:**
+
+1)yum install -y rkhunter ve yum install -y chkrootkit ile güvenlik araçları kuruldu.
+
+2)rkhunter --update, rkhunter --propupd, rkhunter --check ile sistem tarandı.
+
+3)top ile sistem kaynakları izlendi.
+
+**Kullanılan Komutlar :**
+
+```
+yum install -y rkhunter
+yum install -y chkrootkit
+rkhunter --update
+rkhunter --propupd
+rkhunter --check
+top
+
+```
+
+![image](https://github.com/user-attachments/assets/6f169db4-f648-4ff2-934e-40bf655ba555)
+
+
+
+# Son Durum
+
+**Ağ Bağlantısı: Reboot sonrası kalıcı hale geldi.**
+
+**Disk Kullanımı: %7, temizlik ile kontrol altında.**
+
+**Apache: Çalışıyor, mevcut /var/www/html/index.html "Apache çalışıyor, hem de son sürümde :)" gösteriyor.**
+
+**EPEL: Yerel kaynaktan kuruldu.**
+
+**Yedekleme: /root/backup dizininde tamamlandı.**
+
+**Güvenlik: rkhunter ve chkrootkit ile tarama yapıldı, /opt/.script1 silindi, cron temizlendi, /opt sıkılaştırıldı.**
+
+
 
 
