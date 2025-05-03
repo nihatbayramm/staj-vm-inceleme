@@ -206,7 +206,7 @@ chattr +i /etc/crontab
 
 # 4 .Yum Hatası ve Paket Kurulum Problemlerinin Giderilmesi
 
-Sorun: Sistemde yum komutu çalıştırıldığında kilitlenme, repo erişim sorunları ve eksik paket problemleri (örneğin wget olmaması) tespit edilmiştir. Bu nedenle hem yum süreçlerinin düzgün çalışması hem de eksik paketlerin kurulumu için iki aşamalı bir çözüm süreci uygulanmıştır.
+**Sorun:** Sistemde yum komutu çalıştırıldığında kilitlenme, repo erişim sorunları ve eksik paket problemleri (örneğin wget olmaması) tespit edilmiştir. Bu nedenle hem yum süreçlerinin düzgün çalışması hem de eksik paketlerin kurulumu için iki aşamalı bir çözüm süreci uygulanmıştır.
 
 
 
