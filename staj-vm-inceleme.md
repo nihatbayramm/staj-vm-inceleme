@@ -274,4 +274,46 @@ https://vault.centos.org/7.9.2009/isos/x86_64/ adresinden CentOS 7.9.2009 ISO do
 8)yum --enablerepo=epel makecache ile önbellek güncellendi
 
 
+# 5. Logrotate ve RPM Veritabanı
+
+**Sorun:** Log rotasyon hataları ve RPM veritabanı bozulması.
+
+### Çözüm Adımları:
+
+1)touch /var/log/boot.log, chmod 600, chown root:root ile log dosyası oluşturuldu.
+
+2)nano /etc/logrotate.d/syslog ve nano /etc/logrotate.conf ile yapılandırma düzenlendi.
+
+3)logrotate -f /etc/logrotate.conf ile rotasyon test edildi.
+
+4)rm -f /var/log/boot.log-* ile eski loglar silindi.
+
+5)rm -f /var/lib/rpm/__db* ve rpm --initdb ile RPM veritabanı onarıldı.
+
+6)find /mnt/iso -CentOS-7-x86_64-DVD-2009.iso "*db*.rpm" ve rpm -ivh --force /mnt/iso/Packages/libdb-5.3.21-25.el7.x86_64.rpm ile eksik bağımlılıklar kuruldu.
+
+7)find /mnt/iso -CentOS-7-x86_64-DVD-2009.iso "glibc*.rpm" ile glibc paketleri bulundu, rpm -ivh --force ile kuruldu.
+
+**Kullanılan Komutlar :**
+
+```
+touch /var/log/boot.log
+chmod 600 /var/log/boot.log
+chown root:root /var/log/boot.log
+nano /etc/logrotate.d/syslog
+nano /etc/logrotate.conf
+logrotate -f /etc/logrotate.conf
+rm -f /var/log/boot.log-*
+rm -f /var/lib/rpm/__db*
+rpm --initdb
+find /mnt/iso -CentOS-7-x86_64-DVD-2009.iso "*db*.rpm"
+rpm -ivh --force /mnt/iso/Packages/libdb-5.3.21-25.el7.x86_64.rpm
+find /mnt/iso -CentOS-7-x86_64-DVD-2009.iso "glibc*.rpm"
+rpm -ivh --force /mnt/iso/Packages/glibc-2.17-317.el7.x86_64.rpm /mnt/iso/Packages/glibc-common-2.17-317.el7.x86_64.rpm
+
+```
+
+![image](https://github.com/user-attachments/assets/5ba71327-c7f0-479c-b4a8-41d8bc75dc03)
+
+
 
