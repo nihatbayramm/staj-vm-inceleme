@@ -152,20 +152,9 @@ lsof +D /var/tmp
 
 ```
 
+Disk kullanımı %100'den %7'e düşürüldü 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/1a0abbfd-df44-4ca6-afef-d74d17109af7)
 
 
 
