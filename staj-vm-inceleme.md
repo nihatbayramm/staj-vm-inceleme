@@ -157,14 +157,43 @@ Disk kullanımı %100'den %7'e düşürüldü
 ![image](https://github.com/user-attachments/assets/1a0abbfd-df44-4ca6-afef-d74d17109af7)
 
 
+**3. stress.service ve Cron Betikleri**
 
+Sorun: stress.service ve cron betikleri (/opt/.script1, /opt/.script2) kaynakları zorluyordu, disk doluluğuna neden oluyordu.
 
+### Çözüm Adımları:
 
+1)ps aux | grep stress ile çalışan süreçler kontrol edildi, pkill -9 stress ile sonlandırıldı.
 
+2)systemctl stop stress.service ve systemctl disable stress.service ile servis devre dışı bırakıldı.
 
+3)rm -f /etc/systemd/system/stress.service ve rm -f /usr/lib/systemd/system/stress.service ile servis dosyaları silindi.
 
+4)crontab -l ve cat /etc/crontab ile cron betikleri kontrol edildi.
 
+5)crontab -r ile kullanıcı cronları silindi, sed -i '/script1/d' /etc/crontab ile sistem cronundan betik kaldırıldı.
 
+6)rm -f /opt/.script1 ile betik dosyası silindi (neden: zararlı script’i kaldırmak).
 
+7)systemctl restart crond ile cron servisi yeniden başlatıldı (neden: değişikliklerin etkili olmasını sağlamak).
 
+8)chmod 700 /opt ve chattr +i /etc/crontab ile güvenlik artırıldı (neden: yetkisiz erişimi ve tekrar oluşmasını önlemek).
 
+**Kullanılan Komutlar :**
+```
+ps aux | grep stress
+pkill -9 stress
+systemctl stop stress.service
+systemctl disable stress.service
+rm -f /etc/systemd/system/stress.service
+rm -f /usr/lib/systemd/system/stress.service
+systemctl daemon-reload
+crontab -l
+cat /etc/crontab
+crontab -r
+sed -i '/script1/d' /etc/crontab
+rm -f /opt/.script1
+systemctl restart crond
+chmod 700 /opt
+chattr +i /etc/crontab
+```
