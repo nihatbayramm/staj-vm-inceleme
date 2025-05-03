@@ -199,5 +199,9 @@ chattr +i /etc/crontab
 ```
 ![image](https://github.com/user-attachments/assets/cc4c42a8-d490-4878-91fc-1d35e69cb628)
 
+![image](https://github.com/user-attachments/assets/de20cc6a-084b-4d89-b68b-d0bc9dee79eb)
+
 
 ### Not: Arka planın değişme sebebi, işlemleri kendi lokal bilgisayarımda gerçekleştirmem ve bu sırada sunucuya bağlanmamdır. İlerleyen adımlarda sunucuya nasıl bağlandığımı detaylı olarak açıklayacağım
+
+
