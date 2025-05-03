@@ -204,4 +204,5 @@ chattr +i /etc/crontab
 
 ### Not: Arka planın değişme sebebi, işlemleri kendi lokal bilgisayarımda gerçekleştirmem ve bu sırada sunucuya bağlanmamdır. İlerleyen adımlarda sunucuya nasıl bağlandığımı detaylı olarak açıklayacağım
 
+**4. yum Sorunları ve Çözümü**
 
