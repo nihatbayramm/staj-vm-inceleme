@@ -204,15 +204,15 @@ chattr +i /etc/crontab
 
 **Not: Arka planın değişme sebebi, işlemleri kendi lokal bilgisayarımda gerçekleştirmem ve bu sırada sunucuya bağlanmamdır. İlerleyen adımlarda sunucuya nasıl bağlandığımı detaylı olarak açıklayacağım**
 
-# 4. yum Sorunları ve Çözümü
+# 4 .Yum Hatası ve Paket Kurulum Problemlerinin Giderilmesi
 
-Not : wget eksikti ve EPEL deposuna erişim sağlanamadı. 5. adımda çözümü gösterecem
+Sorun: Sistemde yum komutu çalıştırıldığında kilitlenme, repo erişim sorunları ve eksik paket problemleri (örneğin wget olmaması) tespit edilmiştir. Bu nedenle hem yum süreçlerinin düzgün çalışması hem de eksik paketlerin kurulumu için iki aşamalı bir çözüm süreci uygulanmıştır.
 
-Sorun: yum kilitlendi ("Another app is currently holding the yum lock") ve CentOS depolarına erişim sağlanamadı (EOL nedeniyle).
 
-### Çözüm Adımları : 
 
-1)ps aux | grep yum ile çalışan yum süreçleri tespit edildi.
+### Aşama 1: Yum Hatası ve Repo Problemlerinin Çözülmesi : 
+
+1)ps aux | grep yum komutuyla çalışan yum süreçleri tespit edildi.
 
 2)kill -9 <PID> ve rm -f /var/run/yum.pid ile kilit çözüldü (neden: yum işlemini serbest bırakmak).
 
@@ -246,9 +246,32 @@ yum-config-manager --save --setopt=updates.skip_if_unavailable=true
 yum-config-manager --save --setopt=extras.skip_if_unavailable=true
 ```
 
-# 5. Paket Yönetimi ve Wget Kurulum
+![image](https://github.com/user-attachments/assets/39ff45d8-9386-4815-8159-079a604830ec)
 
-**Not: Gerekli bazı paketler standart CentOS depolarında bulunmadığı veya hatalı olduğu için, https://vault.centos.org/7.9.2009/isos/x86_64/ adresinden CentOS 7.9.2009 ISO dosyası indirilmiştir. ISO doğrudan bağlanmamış, yalnızca eksik paketler içinden manuel olarak alınarak sistemde kurulum gerçekleştirilmiştir.**
 
-Sorun: wget eksikti, EPEL deposuna erişim sağlanamadı.
+### Aşama 2: Wget Eksikliği ve EPEL Deposu Sorunlarının Giderilmesi
+
+**Not: Gerekli bazı paketler standart CentOS repolarında bulunamadığı veya hatalı olduğu için,
+https://vault.centos.org/7.9.2009/isos/x86_64/ adresinden CentOS 7.9.2009 ISO dosyası indirilmiş ve eksik paketler buradan manuel olarak alınmıştır.**
+
+
+### Çözüm Adımları : 
+
+1)mount -o loop /dev/sr1 /mnt/iso ile ISO bağlandı.
+
+2)find /mnt/iso -CentOS-7-x86_64-DVD-2009.iso "wget*.rpm" ile wget-1.14-18.el7_6.1.x86_64.rpm bulundu.
+
+3)rpm -ivh --force /mnt/iso/Packages/wget-1.14-18.el7_6.1.x86_64.rpm ile kuruldu.
+
+4)EPEL için wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm denendi, ancak 404 hatası alındı.
+
+5)echo "precedence ::ffff:0:0/96 100" >> /etc/gai.conf ile IPv4 önceliği eklendi (neden: IPv6 kaynaklı sorunları çözmek).
+
+6)wget http://mirror.centos.org/centos/7/extras/x86_64/Packages/epel-release-7-11.noarch.rpm de başarısız oldu
+
+7)Yerel kaynaktan rpm -ivh epel-release-7-11.noarch.rpm ile EPEL manuel kuruldu.
+
+8)yum --enablerepo=epel makecache ile önbellek güncellendi
+
+
 
