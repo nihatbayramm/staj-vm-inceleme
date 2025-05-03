@@ -204,9 +204,46 @@ chattr +i /etc/crontab
 
 **Not: Arka planın değişme sebebi, işlemleri kendi lokal bilgisayarımda gerçekleştirmem ve bu sırada sunucuya bağlanmamdır. İlerleyen adımlarda sunucuya nasıl bağlandığımı detaylı olarak açıklayacağım**
 
-### 4. yum Sorunları ve Çözümü
+# 4. yum Sorunları ve Çözümü
+
+Not : wget eksikti ve EPEL deposuna erişim sağlanamadı. 5. adımda çözümü gösterecem
 
 Sorun: yum kilitlendi ("Another app is currently holding the yum lock") ve CentOS depolarına erişim sağlanamadı (EOL nedeniyle).
 
+### Çözüm Adımları : 
+
+1)ps aux | grep yum ile çalışan yum süreçleri tespit edildi.
+
+2)kill -9 <PID> ve rm -f /var/run/yum.pid ile kilit çözüldü (neden: yum işlemini serbest bırakmak).
+
+3)yum check ile tutarlılık kontrol edildi.
+
+4)mkdir /etc/yum.repos.d/backup ve mv /etc/yum.repos.d/CentOS-* /etc/yum.repos.d/backup/ ile eski repolar yedeklendi.
+
+5)nano /etc/yum.repos.d/CentOS-Vault.repo ile vault.centos.org tabanlı bir repo oluşturuldu.
+
+6)wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirror.centos.org/centos/7/os/x86_64/CentOS-Base.repo ile alternatif repo denendi.
+
+7)yum clean all ve yum makecache ile önbellek güncellendi.
+
+8)yum-config-manager --save --setopt=base.skip_if_unavailable=true ile erişilemeyen repolar atlandı (neden: hata vermesini önlemek).
+
+**Kullanılan Komutlar :**
+
+```
+ps aux | grep yum
+kill -9 6846 7104 7552
+rm -f /var/run/yum.pid
+yum check
+mkdir /etc/yum.repos.d/backup
+mv /etc/yum.repos.d/CentOS-* /etc/yum.repos.d/backup/
+nano /etc/yum.repos.d/CentOS-Vault.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirror.centos.org/centos/7/os/x86_64/CentOS-Base.repo
+yum clean all
+yum makecache
+yum-config-manager --save --setopt=base.skip_if_unavailable=true
+yum-config-manager --save --setopt=updates.skip_if_unavailable=true
+yum-config-manager --save --setopt=extras.skip_if_unavailable=true
+```
 
 
