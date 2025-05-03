@@ -120,6 +120,7 @@ ping google.com
 
 **2. Disk Doluluğu ve Temizlik**
 
+
 Sorun: Disk %100 doluydu (/dev/mapper/centos-root), cron betikleri ve büyük dosyalar nedeniyle.
 
 ### Çözüm Adımları:
@@ -151,6 +152,7 @@ find /tmp -type f -exec rm -f {} \;
 lsof +D /var/tmp
 
 ```
+Not : Disk boyutuna başta ekleme yaptım sonrasında diskleri birleştirip hataları düzelttim
 
 Disk kullanımı %100'den %7'e düşürüldü 
 
