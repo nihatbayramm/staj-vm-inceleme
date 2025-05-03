@@ -246,4 +246,9 @@ yum-config-manager --save --setopt=updates.skip_if_unavailable=true
 yum-config-manager --save --setopt=extras.skip_if_unavailable=true
 ```
 
+# 5. Paket Yönetimi ve Wget Kurulum
+
+**Not: Gerekli bazı paketler standart CentOS depolarında bulunmadığı veya hatalı olduğu için, https://vault.centos.org/7.9.2009/isos/x86_64/ adresinden CentOS 7.9.2009 ISO dosyası indirilmiştir. ISO doğrudan bağlanmamış, yalnızca eksik paketler içinden manuel olarak alınarak sistemde kurulum gerçekleştirilmiştir.**
+
+Sorun: wget eksikti, EPEL deposuna erişim sağlanamadı.
 
