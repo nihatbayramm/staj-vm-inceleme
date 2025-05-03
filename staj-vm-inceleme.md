@@ -397,5 +397,3 @@ top
 **Güvenlik: rkhunter ve chkrootkit ile tarama yapıldı, /opt/.script1 silindi, cron temizlendi, /opt sıkılaştırıldı.**
 
 
-
-
