@@ -380,6 +380,7 @@ top
 
 ![image](https://github.com/user-attachments/assets/6f169db4-f648-4ff2-934e-40bf655ba555)
 
+![image](https://github.com/user-attachments/assets/84e5ae80-dc88-4970-b47e-1c5826a4d776)
 
 
 # Son Durum
