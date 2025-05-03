@@ -206,3 +206,7 @@ chattr +i /etc/crontab
 
 ### 4. yum Sorunları ve Çözümü
 
+Sorun: yum kilitlendi ("Another app is currently holding the yum lock") ve CentOS depolarına erişim sağlanamadı (EOL nedeniyle).
+
+
+
