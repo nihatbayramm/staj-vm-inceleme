@@ -118,6 +118,42 @@ ping google.com
 ![image](https://github.com/user-attachments/assets/a725f311-0b4f-44bb-8dd8-4b239e20bb01)
 
 
+**2. Disk Doluluğu ve Temizlik**
+
+Sorun: Disk %100 doluydu (/dev/mapper/centos-root), cron betikleri ve büyük dosyalar nedeniyle.
+
+### Çözüm Adımları:
+
+1)df -h ile disk durumu kontrol edildi.
+
+2)du -ah / | sort -rh | head -n 20 ve du -sh /var/tmp/* ile büyük dosyalar (/var/tmp/*.bin) tespit edildi.
+
+3)rm -f /var/tmp/*.bin ve rm -rf /var/tmp/* ile gereksiz dosyalar silindi.
+
+4)rm -rf /var/log/*.log.* ve rm -rf /var/cache/* ile eski loglar ve önbellek temizlendi.
+
+5)lsof +D /var/tmp ile açık dosyalar kontrol edildi (neden: disk alanını tamamen serbest bırakmak).
+
+
+### Kullanılan Komutlar:
+
+```
+df -h
+du -ah / | sort -rh | head -n 20
+du -sh /var/tmp/*
+rm -f /var/tmp/*.bin
+rm -rf /var/tmp/*
+truncate -s 0 /var/log/messages
+truncate -s 0 /var/log/secure
+rm -rf /var/log/*.log.*
+rm -rf /var/cache/*
+find /tmp -type f -exec rm -f {} \;
+lsof +D /var/tmp
+
+```
+
+
+
 
 
 
