@@ -13,11 +13,13 @@ Root Şifresini Sıfırlamak için İzlenen Adımlar:
 **1. VM’i başlatıyoruz.**
 ![image](https://github.com/user-attachments/assets/fffe6e73-6765-4361-a78c-362c09fb5073)
 
-**3. GRUB ekranı geldiğinde klavyeden `e` tuşuna basıyoruz.**
-**5. `linux16` veya `linux` ile başlayan satırını buluyoruz.**
+**2. GRUB ekranı geldiğinde klavyeden `e` tuşuna basıyoruz.**
+
+**3. `linux16` veya `linux` ile başlayan satırını buluyoruz.**
+
 ![image](https://github.com/user-attachments/assets/f48ddeb8-b427-4c59-8c46-11cf0a5fde17)
 
-**7. Satırın sonuna şu komutu ekliyoruz:**
+**4. Satırın sonuna şu komutu ekliyoruz:**
 
 ``` 
 rd.break
@@ -68,27 +70,27 @@ Sorun: Reboot sonrası internet bağlantısı kayboluyordu. enp0s3 arayüzü IP 
 
 Çözüm Adımları:
 
--ip a ve ip addr show enp0s3 ile ağ arayüzü durumu kontrol edildi.
+1)ip a ve ip addr show enp0s3 ile ağ arayüzü durumu kontrol edildi.
 
--cat /etc/resolv.conf ile DNS ayarları incelendi, ancak bağlantı sağlanamadı.
+2)cat /etc/resolv.conf ile DNS ayarları incelendi, ancak bağlantı sağlanamadı.
 
--chattr -i /etc/resolv.conf ile dosya korumasını kaldırıp nano /etc/resolv.conf ile manuel DNS eklendi (neden: otomatik DNS yapılandırması çalışmıyordu).
+3)chattr -i /etc/resolv.conf ile dosya korumasını kaldırıp nano /etc/resolv.conf ile manuel DNS eklendi (neden: otomatik DNS yapılandırması çalışmıyordu).
 
--dhclient -r enp0s3 ve dhclient enp0s3 ile DHCP üzerinden IP alındı.
+4)dhclient -r enp0s3 ve dhclient enp0s3 ile DHCP üzerinden IP alındı.
 
--nano /etc/sysconfig/network-scripts/ifcfg-enp0s3 ile yapılandırma düzenlendi (BOOTPROTO=dhcp, ONBOOT=yes).
+5)nano /etc/sysconfig/network-scripts/ifcfg-enp0s3 ile yapılandırma düzenlendi (BOOTPROTO=dhcp, ONBOOT=yes).
 
--systemctl restart network ile ağ servisi yeniden başlatıldı.
+6)systemctl restart network ile ağ servisi yeniden başlatıldı.
 
--nmcli con mod enp0s3 ipv4.method manual ipv4.addresses 192.168.56.1 ipv4.dns "8.8.8.8 8.8.4.4" denendi, ancak DHCP tercih edildi.
+7)nmcli con mod enp0s3 ipv4.method manual ipv4.addresses 192.168.56.1 ipv4.dns "8.8.8.8 8.8.4.4" denendi, ancak DHCP tercih edildi.
 
--systemctl stop NetworkManager ile çakışan NetworkManager devre dışı bırakıldı.
+8)systemctl stop NetworkManager ile çakışan NetworkManager devre dışı bırakıldı.
 
--systemctl enable network ve chkconfig network on ile ağ servisi önyüklemede aktif hale getirildi.
+9)systemctl enable network ve chkconfig network on ile ağ servisi önyüklemede aktif hale getirildi.
 
--dracut -f ile initramfs güncellendi (neden: önyükleme sırasında ağ yapılandırmalarının doğru yüklenmesini sağlamak).
+10)dracut -f ile initramfs güncellendi (neden: önyükleme sırasında ağ yapılandırmalarının doğru yüklenmesini sağlamak).
 
--reboot sonrası ping -c 2 8.8.8.8 ve ping google.com ile bağlantı doğrulandı (0% paket kaybı).
+11)reboot sonrası ping -c 2 8.8.8.8 ve ping google.com ile bağlantı doğrulandı (0% paket kaybı).
 
 **Kullanılan Komutlar :**
 
