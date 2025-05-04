@@ -20,7 +20,7 @@ Bu proje, bir CentOS 7 sanal makinesinde karşılaşılan çeşitli sistem sorun
 - **Sorun**: Disk %100 doluydu (`/dev/mapper/centos-root`).
 - **Çözüm**:
   - `/var/tmp/*.bin` dosyaları ve eski loglar (`/var/log/`) temizlendi.
-  - Disk kullanımı %51'e düşürüldü.
+  - Disk kullanımı %7'e düşürüldü.
 
 ### 4. Yum Sorunları
 - **Sorun**: Yum kilitlenmişti ve CentOS depolarına erişim sağlanamıyordu (EOL nedeniyle).
