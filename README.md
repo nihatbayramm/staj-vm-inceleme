@@ -49,7 +49,7 @@ Bu proje, bir CentOS 7 sanal makinesinde karşılaşılan çeşitli sistem sorun
 ### 7. Yedekleme
 - **İşlem**:
   - `/etc` ve `/root` dizinleri, sanal makinenin son halini yansıtacak şekilde `final_backup.tar.gz` dosyasına paketlendi.
-  - Bu dosya, GitHub reposuna yüklenmiştir.
+  - Bu dosya, GitHub reposuna yüklenmemiştir.
 
 ## Son Durum
 - **Ağ Bağlantısı**: Reboot sonrası stabil.
